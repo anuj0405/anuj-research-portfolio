@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Anuj Kumar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2332;
+            --secondary: #b8860b;
+            --accent: #9caf88;
+            --neutral: #faf9f6;
+            --text: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #faf9f6 0%, #f5f3f0 100%);
+            color: var(--text);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .journey-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .journey-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .journey-card:hover::before {
+            left: 100%;
+        }
+        
+        .journey-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 35, 50, 0.15);
+            border-color: var(--secondary);
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, var(--secondary), #d4a017);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .skill-item {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1565c0;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid rgba(33, 150, 243, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(33, 150, 243, 0.2);
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 35, 50, 0.1);
+            border-color: var(--secondary);
+        }
+        
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--secondary);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .skills-radar {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">Anuj Kumar</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Home</a>
+                    <a href="research.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Research</a>
+                    <a href="publications.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Publications</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">About Me</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Passionate AI researcher dedicated to advancing the frontiers of artificial intelligence through 
+                    innovative research in Large Language Models, Neuro-symbolic AI, and Explainable AI.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Introduction -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 gradient-text">PhD Scholar & AI Researcher</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        I am a dedicated PhD scholar at the Department of Computer Science & Engineering, Indian Institute of Technology (IIT) Jammu, 
+                        with a strong focus on cutting-edge research in artificial intelligence. My work spans multiple domains including 
+                        Large Language Models, Neuro-symbolic AI, Natural Language Processing, and Explainable AI.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        With a consistent academic record including a CPI of 9.5 in my PhD program and 9.14 in my M.Tech, I have established 
+                        myself as a researcher committed to excellence. My work has been published in top-tier venues including EMNLP, IJCNN, 
+                        ISCAS, and ICAART, contributing to the advancement of AI technologies.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="achievement-badge">12+ Publications</span>
+                        <span class="achievement-badge">Top-tier Venues</span>
+                        <span class="achievement-badge">Academic Excellence</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="w-80 h-80 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full mx-auto flex items-center justify-center">
+                        <div class="text-6xl font-bold text-yellow-600">AK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Journey -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Academic Journey</h2>
+                <p class="text-xl text-gray-600">
+                    Educational progression and key milestones in my research career
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
+                
+                <!-- PhD -->
+                <div class="flex items-center mb-12">
+                    <div class="w-1/2 pr-8 text-right">
+                        <div class="journey-card rounded-xl p-6">
+                            <div class="text-sm text-yellow-600 font-semibold mb-2">2021 - Present</div>
+                            <h3 class="text-xl font-bold mb-3">Doctorate of Philosophy (PhD)</h3>
+                            <p class="text-gray-600 mb-3">
+                                Indian Institute of Technology Jammu<br>
+                                Department of Computer Science Engineering<br>
+                                CPI: 9.5/10.0
+                            </p>
+                            <p class="text-sm text-gray-500 mb-3">
+                                Supervisor: Dr Yamuna Prasad<br>
+                                Co-Supervisor: Prof. Virendra Singh
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">LLM Research</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Neuro-symbolic AI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="w-1/2 pl-8">
+                        <div class="text-sm text-gray-500">Current Research</div>
+                        <div class="font-semibold">Advanced AI Systems</div>
+                    </div>
+                </div>
+
+                <!-- M.Tech -->
+                <div class="flex items-center mb-12">
+                    <div class="w-1/2 pr-8 text-right">
+                        <div class="text-sm text-gray-500">Thesis Work</div>
+                        <div class="font-semibold">Cross Lingual Alignment</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="w-1/2 pl-8">
+                        <div class="journey-card rounded-xl p-6">
+                            <div class="text-sm text-yellow-600 font-semibold mb-2">2019 - 2021</div>
+                            <h3 class="text-xl font-bold mb-3">Master of Technology (M.Tech)</h3>
+                            <p class="text-gray-600 mb-3">
+                                Indian Institute of Technology Jammu<br>
+                                Department of Computer Science Engineering<br>
+                                CPI: 9.14/10.0
+                            </p>
+                            <p class="text-sm text-gray-500 mb-3">
+                                Supervisor: Prof. Virendra Singh<br>
+                                Co-Supervisor: Dr Yamuna Prasad
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Multilingual NLP</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Knowledge Graphs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B.Tech -->
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-8 text-right">
+                        <div class="journey-card rounded-xl p-6">
+                            <div class="text-sm text-yellow-600 font-semibold mb-2">2014 - 2018</div>
+                            <h3 class="text-xl font-bold mb-3">Bachelor of Technology (B.Tech)</h3>
+                            <p class="text-gray-600 mb-3">
+                                K.K Wagh Institute Of Engineering Education and Research, Nashik<br>
+                                Department of Computer Science Engineering<br>
+                                Percentage: 61.64%
+                            </p>
+                            <p class="text-sm text-gray-500 mb-3">
+                                Thesis: Query Processing on Encoded Data using Bitmap
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Database Systems</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Data Encoding</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="w-1/2 pl-8">
+                        <div class="text-sm text-gray-500">Foundation</div>
+                        <div class="font-semibold">Computer Science</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Expertise -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Skills & Expertise</h2>
+                <p class="text-xl text-gray-600">
+                    Technical competencies and research specializations
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Skills Radar Chart -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Research Areas Distribution</h3>
+                    <div class="skills-radar" id="skills-radar"></div>
+                </div>
+                
+                <!-- Technical Skills -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold mb-4 text-gray-700">Programming Languages</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">C/C++</span>
+                            <span class="skill-item">Shell Script</span>
+                            <span class="skill-item">SQL</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold mb-4 text-gray-700">AI/ML Frameworks</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">Hugging Face Transformers</span>
+                            <span class="skill-item">LangChain</span>
+                            <span class="skill-item">RAG</span>
+                            <span class="skill-item">OpenAI APIs</span>
+                            <span class="skill-item">Scikit-learn</span>
+                            <span class="skill-item">TensorFlow</span>
+                            <span class="skill-item">PyTorch</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold mb-4 text-gray-700">Tools & Technologies</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">Jupyter Notebook</span>
+                            <span class="skill-item">Git/GitHub</span>
+                            <span class="skill-item">MS SQL Server</span>
+                            <span class="skill-item">Azure Data Studio</span>
+                            <span class="skill-item">Matplotlib</span>
+                            <span class="skill-item">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Awards -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Achievements & Awards</h2>
+                <p class="text-xl text-gray-600">
+                    Recognition and accomplishments in academic and research endeavors
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="journey-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">ISCA 2025 Travel Grant</h3>
+                    <p class="text-gray-600 text-sm">
+                        Received student travel grant to attend 52nd International Symposium on Computer Architecture in Tokyo, Japan
+                    </p>
+                </div>
+                
+                <div class="journey-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">COLING 2025 Volunteer</h3>
+                    <p class="text-gray-600 text-sm">
+                        Selected as on-site volunteer for 31st International Conference on Computational Linguistics in Abu Dhabi
+                    </p>
+                </div>
+                
+                <div class="journey-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">VDAT Fellowship</h3>
+                    <p class="text-gray-600 text-sm">
+                        Received fellowship to attend 27th International VLSI Design and Test Symposium (VDAT-2023)
+                    </p>
+                </div>
+                
+                <div class="journey-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">GATE 2019</h3>
+                    <p class="text-gray-600 text-sm">
+                        Qualified GATE with AIR-3736 (Gate Score-533) in Computer Science and Engineering
+                    </p>
+                </div>
+                
+                <div class="journey-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">CVIP 2023 Committee</h3>
+                    <p class="text-gray-600 text-sm">
+                        Served on the organizing committee of Computer Vision and Image Processing Conference 2023 at IIT Jammu
+                    </p>
+                </div>
+                
+                <div class="journey-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Conference Participation</h3>
+                    <p class="text-gray-600 text-sm">
+                        Active participation in VDAT 2022, VDAT 2023, CVIP 2023, COLING 2025, and ICAART 2025
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Get in Touch</h2>
+                <p class="text-xl text-gray-600">
+                    Interested in collaboration or have questions about my research? Feel free to reach out.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="contact-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Email</h3>
+                    <p class="text-gray-600 mb-3">anuj@iitjammu.ac.in</p>
+                    <p class="text-sm text-gray-500">Primary contact for academic inquiries</p>
+                </div>
+                
+                <div class="contact-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Phone</h3>
+                    <p class="text-gray-600 mb-3">+91 8806261968</p>
+                    <p class="text-sm text-gray-500">Available during working hours</p>
+                </div>
+                
+                <div class="contact-card rounded-xl p-6 text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Location</h3>
+                    <p class="text-gray-600 mb-3">IIT Jammu, India</p>
+                    <p class="text-sm text-gray-500">Department of Computer Science & Engineering</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="text-2xl font-bold mb-4 gradient-text">Anuj Kumar</div>
+            <p class="text-gray-400 mb-4">PhD Scholar | AI Researcher | IIT Jammu</p>
+            <p class="text-gray-500 text-sm">© 2025 Anuj Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

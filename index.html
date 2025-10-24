@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuj Kumar - Research Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link href="https://unpkg.com/splitting@1.0.6/dist/splitting.css" rel="stylesheet">
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2332;
+            --secondary: #b8860b;
+            --accent: #9caf88;
+            --neutral: #faf9f6;
+            --text: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #faf9f6 0%, #f5f3f0 100%);
+            color: var(--text);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(26, 35, 50, 0.7), rgba(26, 35, 50, 0.7)), url('resources/hero-research.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .research-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(26, 35, 50, 0.15);
+            border-color: var(--secondary);
+        }
+        
+        .publication-badge {
+            background: linear-gradient(135deg, var(--secondary), #d4a017);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .typing-cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .research-radar {
+            width: 100%;
+            height: 400px;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">Anuj Kumar</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Home</a>
+                    <a href="research.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Research</a>
+                    <a href="publications.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Publications</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">About</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="particle-bg" id="particles"></div>
+        <div class="max-w-6xl mx-auto px-6 text-center text-white relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 opacity-0" id="hero-title">
+                PhD Scholar & AI Researcher
+            </h1>
+            <div class="text-xl md:text-2xl mb-8 opacity-0" id="hero-subtitle">
+                <span id="typed-research"></span>
+            </div>
+            <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto opacity-0" id="hero-description">
+                Advancing the frontiers of Artificial Intelligence through cutting-edge research in Large Language Models, 
+                Neuro-symbolic AI, and Explainable AI at Indian Institute of Technology Jammu.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0" id="hero-buttons">
+                <a href="research.html" class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                    Explore Research
+                </a>
+                <a href="publications.html" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-lg font-semibold transition-all duration-300">
+                    View Publications
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas Radar -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Research Expertise</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive research spanning multiple domains of artificial intelligence, 
+                    with focus on cutting-edge methodologies and real-world applications.
+                </p>
+            </div>
+            <div class="research-radar" id="research-radar"></div>
+        </div>
+    </section>
+
+    <!-- Featured Publications -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Featured Publications</h2>
+                <p class="text-xl text-gray-600">
+                    Recent publications in top-tier venues showcasing cutting-edge research
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="research-card rounded-xl p-6">
+                    <div class="publication-badge mb-4">EMNLP 2025</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">MarathiEmoExplain: A Dataset for Sentiment, Emotion, and Explanation in Low-Resource Marathi</h3>
+                    <p class="text-gray-600 mb-4">Novel dataset and framework for multilingual sentiment analysis with explainable AI components.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">NLP</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Explainable AI</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Multilingual</span>
+                    </div>
+                    <a href="publications.html" class="text-yellow-600 hover:text-yellow-700 font-semibold">Read More →</a>
+                </div>
+                
+                <div class="research-card rounded-xl p-6">
+                    <div class="publication-badge mb-4">IJCNN 2025</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">IPICVx: Explainable and Robust Detection of Intestinal Parasites</h3>
+                    <p class="text-gray-600 mb-4">Advanced computer vision techniques for medical diagnosis with enhanced explainability.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Computer Vision</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Medical AI</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Robustness</span>
+                    </div>
+                    <a href="publications.html" class="text-yellow-600 hover:text-yellow-700 font-semibold">Read More →</a>
+                </div>
+                
+                <div class="research-card rounded-xl p-6">
+                    <div class="publication-badge mb-4">KBS 2025</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Knowledge-Based Multicultural Bias Detection and Reasoning</h3>
+                    <p class="text-gray-600 mb-4">Novel framework for detecting and mitigating cultural bias in AI systems with explainable components.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Bias Detection</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Knowledge Systems</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Fair AI</span>
+                    </div>
+                    <a href="publications.html" class="text-yellow-600 hover:text-yellow-700 font-semibold">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Highlights -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Research Impact</h2>
+                <p class="text-xl text-gray-600">
+                    Key achievements and contributions to the field of artificial intelligence
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-600 mb-2">12+</div>
+                    <div class="text-gray-600">Publications</div>
+                    <div class="text-sm text-gray-500">Top-tier venues</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-600 mb-2">5</div>
+                    <div class="text-gray-600">Research Areas</div>
+                    <div class="text-sm text-gray-500">AI/ML Domains</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-600 mb-2">4</div>
+                    <div class="text-gray-600">Conferences</div>
+                    <div class="text-sm text-gray-500">International</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-600 mb-2">3</div>
+                    <div class="text-gray-600">Awards</div>
+                    <div class="text-sm text-gray-500">Academic Excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Collaborate?</h2>
+            <p class="text-xl mb-8 text-gray-300">
+                Interested in cutting-edge AI research? Let's explore opportunities for collaboration and innovation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="about.html" class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                    Get in Touch
+                </a>
+                <a href="research.html" class="border-2 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300">
+                    View Research
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="text-2xl font-bold mb-4 gradient-text">Anuj Kumar</div>
+            <p class="text-gray-400 mb-4">PhD Scholar | AI Researcher | IIT Jammu</p>
+            <p class="text-gray-500 text-sm">© 2025 Anuj Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
